@@ -3076,3 +3076,45 @@
 					}
 
 	}
+
+
+
+
+	/*
+	* LOGIN
+	*/
+
+	.bg-login{
+		background-image: url("../../images/header.jpg");
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	
+	.bg-sign-up{
+		background-image: url("../../images/header.jpg");
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+
+	.img-sign-up{
+		width: 100% !important;
+		max-width: 500px;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.btn-color {
+		color: #fff;
+		background-color: #1f9393;
+		border-color: #27a9b0;
+	}
+	  
+	.btn-color:hover {
+		color: #fff;
+		background-color: #27a9b0;
+		border-color: #1f9393;
+	}
+
+	.py-login{
+		padding-top: 7rem !important;
+	}

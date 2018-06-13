@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FindPlanner - Registro</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="bg-sign-up">
+    <nav id="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#">Planeadores</a></li>
+          <li><a href="#">Proveedores</a>
+            <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Phasellus consequat</a></li>
+            <li><a href="#">Magna phasellus</a></li>
+            <li><a href="#">Etiam dolore nisl</a></li>
+            </ul>
+          </li>
+          <li><a href="#">¿Quienes Somos?</a>
+          <li>
+            <a href="#">Cuenta</a>
+            <ul>
+              <li><a href="login.html">Iniciar Sesión</a></li>
+              <li><a href="signup.html">Registrarse</a></li>
+            </ul>
+          </li>
+        </ul>
+    </nav>
+    <div class="container py-login">
+      <div class="row align-items-center">
+        <div class="col-sm-6 offset-md-3">
+          <div class="card bg-card">
+            <div class="card-body">
+              <!-- <h6 class="card-title">Start with a small group form</h6> -->
+              <img src="images/logo.png" class="img-sign-up">
+              <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
+                <form id="signupForm" action="http://206.81.15.248:3000/api/users/signup" method="post">
+                  <div  id="errorSpan" class='error-message'></div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input name="nombres" class="form-control" type="text" value="" id="example-text-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Correo Electronico</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    <small id="emailHelp" class="form-text text-muted">Nosotros jamas compartiremos tu correo electronico</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="InputPassword">Contraseña</label>
+                    <div class="ht-tm-element ht-tm-element-inner">
+                      <input name="password" class="form-control" type="password" value="" id="example-password-input">
+                    </div>
+                  </div>
+                  <input hidden name="tipo_usuario" value="1">
+                  <div class="text-center">
+                      <button type="submit" id="submitButton" name="submitButton" value="Submit" class="btn btn-color">Registrar</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="assets/js/loadNavbar.js"></script>-->
+    <script src="node_modules/skel-framework-npm/dist/skel.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.onvisible.min.js"></script>
+    <!--<script src="assets/js/skel.min.js"></script>-->
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+
+    <script type='text/javascript'>
+        /* attach a submit handler to the form */
+        $("#signupForm").submit(function(event) {
+            /* stop form from submitting normally */
+            event.preventDefault();
+
+            /* get the action attribute from the <form action=""> element */
+            var $form = $( this ),
+                method = $form.attr('method'),
+                url = $form.attr( 'action' );
+            $.ajax({
+                type: method,
+                url: url,
+                data: $form.serialize(),
+                success: function (data) {
+                    console.log('Submission was successful.');
+                    console.log(data);
+                    var response_data = data;
+                    window.sessionStorage.token = response_data.token;
+                    window.sessionStorage.user = response_data.user.NOMBRES;
+                    window.location = "index.html"
+                    console.log(window.sessionStorage);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    $(".error-message").empty().append('Invalid Credentials');
+                },
+            });
+        });
+    </script>
+
+  </body>
+</html>
